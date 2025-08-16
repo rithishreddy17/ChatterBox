@@ -2,7 +2,7 @@ import { useState } from 'react';
 import useAuthUser from '../components/useAuthUser'
 import { QueryClient, useMutation, useQueryClient } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
-import { CameraIcon } from 'lucide-react';
+import { CameraIcon, ShuffleIcon } from 'lucide-react';
 import { completeOnboarding } from '../lib/api';
 
 const OnboardingPage = () => {
@@ -32,6 +32,8 @@ const OnboardingPage = () => {
     onboardingMutation(formState);
   }
 
+  const handleRandomAvatar = () => {}
+
 
   return (
     <div className="min-h-screen bg-base-100 flex items-center justify-center p-4">
@@ -57,6 +59,30 @@ const OnboardingPage = () => {
 
               </div>
 
+              {/* Generate Random avatar btn */}
+              <div className="flex items-center gap-2">
+                <button type="button" onClick={handleRandomAvatar} className="btn btn-accent">
+                  <ShuffleIcon className="size-4 mr-2"/>
+                  Generate Random Avatar
+                </button>
+              </div>
+
+              {/* Full Name */}
+
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Full Name</span>
+                </label>
+                <input type="text"
+                  name="fullName"
+                  value={formState.fullName}
+                  onChange={(e) => setFormState({...formState, fullName: e.target.value})}
+                  className="input input-bordered w-full"
+                  placeholder="Your full name"
+                />
+              </div>
+
+                
 
             </div>
           </form>
