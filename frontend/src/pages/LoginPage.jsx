@@ -4,6 +4,7 @@ import { login } from '../lib/api';
 import toast from 'react-hot-toast';
 import { ShipWheelIcon } from 'lucide-react';
 import { Link } from 'react-router';
+import useLogin from '../hooks/useLogin';
 
 const LoginPage = () => {
 
@@ -12,19 +13,21 @@ const LoginPage = () => {
     password: ""
   });
 
+  //this is without using our custom useLogin hook
+  // const queryClient = useQueryClient();
+  // const {mutate: loginMutation, isPending, error} = useMutation({
+  //   mutationFn: login,
+  //   onSuccess: () => {
+  //     queryClient.invalidateQueries(["authUser"]);
+  //     toast.success("Logged in Successfully!");
+  //   },
+  //   onError: (error) => {
+  //     console.log(error);
+  //     toast.error(error?.response?.data?.message || "Something went wrong");
+  //   }
+  // })
 
-  const queryClient = useQueryClient();
-  const {mutate: loginMutation, isPending, error} = useMutation({
-    mutationFn: login,
-    onSuccess: () => {
-      queryClient.invalidateQueries(["authUser"]);
-      toast.success("Logged in Successfully!");
-    },
-    onError: (error) => {
-      console.log(error);
-      toast.error(error?.response?.data?.message || "Something went wrong");
-    }
-  })
+  const {isPending, error, loginMutation} = useLogin();
 
 
   const handleLogin = (e) => {

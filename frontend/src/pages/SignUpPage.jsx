@@ -4,6 +4,7 @@ import { Link } from 'react-router';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { signup } from '../lib/api';
 import toast from 'react-hot-toast';
+import useSignup from '../hooks/useSignup';
 
 const SignUpPage = () => {
   
@@ -13,17 +14,19 @@ const SignUpPage = () => {
     password: "",
   });
 
-  const queryClient = useQueryClient();
+  // const queryClient = useQueryClient();
 
-  const {mutate: signupMutation, isPending, error} = useMutation({
-    mutationFn: signup,
-    onSuccess: () => {
-      queryClient.invalidateQueries({queryKey: ["authUser"]})
-    },
-    onError: (error) => {
-      toast.error(error?.response?.data?.message || "Something went wrong");
-    }
-  });
+  // const {mutate: signupMutation, isPending, error} = useMutation({
+  //   mutationFn: signup,
+  //   onSuccess: () => {
+  //     queryClient.invalidateQueries({queryKey: ["authUser"]})
+  //   },
+  //   onError: (error) => {
+  //     toast.error(error?.response?.data?.message || "Something went wrong");
+  //   }
+  // });
+
+  const {isPending, error, signupMutation} = useSignup();
 
   
 
