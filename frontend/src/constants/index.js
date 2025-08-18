@@ -180,6 +180,11 @@ export const LANGUAGES = [
 ];
 
 export const LANGUAGE_TO_FLAG = {
+  hindi: "in",
+  telugu: "in",
+  tamil: "in",
+  kannada: "in",
+  malayalam: "in",
   english: "gb",
   spanish: "es",
   french: "fr",
