@@ -39,7 +39,7 @@ export const getUserFriends = async () => {
 
 export const getRecommendedUsers = async () => {
     const res = await axiosInstance.get("/users");
-    return res.data;
+    return res.data.recommendedUsers;
 };
 
 export const getOutgoingFriendReqs = async () => {
